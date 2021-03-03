@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-    ifstream fin1("input1", ios_base::binary);
+    ifstream fin1("dna.50MB.lines1", ios_base::binary);
     string data1((istreambuf_iterator<char>(fin1)),
                 istreambuf_iterator<char>());
 
-    ifstream fin2("input1lzwdecompressed", ios_base::binary);
+    ifstream fin2("dna.50MB.lines1.lzw.decompressed", ios_base::binary);
     string data2((istreambuf_iterator<char>(fin2)),
                  istreambuf_iterator<char>());
 
