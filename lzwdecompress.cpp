@@ -34,10 +34,10 @@ public:
             long id = readIdFromData();
 
             string neu;
-
+            
             // watch out for the case when id points to the not yet written old id
             if(id == this->table.size()) {
-                neu = old;
+                neu = old + old[0];
             } else {
                 neu = this->table[id];
             }
@@ -47,13 +47,14 @@ public:
                 // add to table
                 this->table.emplace_back(old + neu[0]);
             }
-            // update old tuple
-            old = neu;
 
             // cout << id << " " << this->table.back() << " " << neu << endl;
 
             // add sequence to decompressed_data
             decompressed_data += this->table[id];
+
+            // update old tuple
+            old = neu;
         }
 
         return decompressed_data;
@@ -106,7 +107,8 @@ int main() {
 
     LZWDec lzwdec = LZWDec(data);
 
-    fout << lzwdec.decompress();
+    string decompressed_data = lzwdec.decompress();
+    fout << decompressed_data;
 
     cout << "Data size is: " << datasize << endl;
     cout << "Number of tuples: " << lzwdec.counter << endl
